@@ -12,7 +12,7 @@ function App() {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: '#e91e53',
+        tabBarActiveTintColor: '#e91e63',
         headerShown: false,
       }}
     >
