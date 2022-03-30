@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import { TextInput, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
-import { useAppSelector } from '../../hooks/useRedux';
 
 import { iCustomInput } from './interface';
 import styles from './style';
@@ -18,8 +17,6 @@ const CustomInput = ({
 }: iCustomInput) => {
   const [focusLogin, setFocusLogin] = useState(false);
   const [showIcon, setShowIcons] = useState(true);
-  const error = useAppSelector(state => state.userAuth.status);
-  console.log(error);
 
   return (
     <View style={styles.container}>

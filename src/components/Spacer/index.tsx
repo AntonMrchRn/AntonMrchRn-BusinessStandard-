@@ -6,7 +6,7 @@ import sizes from '../../helpers/sizes';
 
 interface iSpacer {
   size?: string;
-  lineWidth?: any;
+  lineWidth?: string;
   color?: string;
   filler?: boolean;
   style?: any;

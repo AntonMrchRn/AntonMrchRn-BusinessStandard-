@@ -23,7 +23,7 @@ function RootNavigate() {
           dispatch(Login());
         } else dispatch(notLogin());
       } catch (e) {
-        console.log("User didn't login", e);
+        console.error("User didn't login", e);
       }
     };
 
@@ -35,7 +35,6 @@ function RootNavigate() {
       {isAuth ? (
         <Stack.Screen name="AppNavigation" component={TabNavigation} />
       ) : (
-        // <Stack.Screen name="AuthNavigation" component={AuthNavigation} />
         <Stack.Screen name="AuthNavigation" component={AuthNavigation} />
       )}
     </Stack.Navigator>

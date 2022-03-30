@@ -6,7 +6,7 @@ import styles from './style';
 
 interface iCutomButton {
   label: string;
-  onSubmit: any;
+  onSubmit: () => void;
 }
 
 const CustomButton = ({ label, onSubmit }: iCutomButton) => {
