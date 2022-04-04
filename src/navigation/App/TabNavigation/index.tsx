@@ -4,10 +4,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import OptionsScreen from '../../../screens/tabs/TabOptionsScreen';
 import HomeScreen from '../../../screens/tabs/TabHomeScreen';
 import platform from '../../../helpers/platform';
 import styles from './style';
+import DocsScreen from '../../../screens/tabs/TabDocsScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,7 +22,16 @@ function AppNavigation() {
       }}
     >
       <Tab.Screen
-        name="Home"
+        name="Документы"
+        component={DocsScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="documents" size={20} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Компании"
         component={HomeScreen}
         options={{
           tabBarIcon: ({ color }) => (
@@ -31,11 +40,11 @@ function AppNavigation() {
         }}
       />
       <Tab.Screen
-        name="Documents"
-        component={OptionsScreen}
+        name="Сотрудники"
+        component={HomeScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <Ionicons name="documents" size={20} color={color} />
+            <Ionicons name="people" size={21} color={color} />
           ),
         }}
       />
