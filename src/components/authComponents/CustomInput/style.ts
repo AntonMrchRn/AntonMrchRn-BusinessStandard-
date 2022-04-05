@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import platform from '../../helpers/platform';
+import platform from '../../../helpers/platform';
 
 const styles = StyleSheet.create({
   input: {

@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 
-import CustomInput from '../../../components/CustomInput';
-import Spacer from '../../../components/Spacer';
-import CustomButton from '../../../components/CustomButton';
-
-import styles from './style';
-import { useAppDispatch, useAppSelector } from '../../../hooks/useRedux';
-import { fetchUserAuth } from '../../../redux/slices/userAuth';
 import { SvgXml } from 'react-native-svg';
-import { xml } from '../../../assets/icons/logo';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { useAppDispatch, useAppSelector } from '../../../hooks/useRedux';
+import { fetchUserAuth } from '../../../redux/slices/userAuth';
+import { xml } from '../../../assets/icons/logo';
+
+import Spacer from '../../../components/Spacer';
+import styles from './style';
+import CustomInput from '../../../components/authComponents/CustomInput';
+import CustomButton from '../../../components/authComponents/CustomButton';
+
 const SignUpScreen = () => {
-  const [email, onChangeLogin] = useState('');
-  const [password, onChangePassword] = useState('');
+  const [email, onChangeLogin] = useState('anna.d.rysina@gmail.com');
+  const [password, onChangePassword] = useState('654321');
+  const dispatch = useAppDispatch();
 
   const error = useAppSelector(state => state.userAuth.status);
-  const dispatch = useAppDispatch();
   const onSubmit = () => dispatch(fetchUserAuth({ email, password }));
 
   return (
@@ -29,8 +30,7 @@ const SignUpScreen = () => {
         <View>
           {error?.error && <Text style={styles.error}>{error?.error}</Text>}
         </View>
-        <Spacer size="L" />
-        <Spacer size="XS" />
+        <Spacer size="XL" />
         <CustomInput
           placeholder="Логин"
           type="login"
@@ -38,7 +38,6 @@ const SignUpScreen = () => {
           onChangeLogin={onChangeLogin}
         />
         <Spacer size="L" />
-        <Spacer size="S" />
         <CustomInput
           placeholder="Пароль"
           type="password"
