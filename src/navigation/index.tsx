@@ -5,30 +5,21 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthNavigation from './Auth';
 import TabNavigation from './App/TabNavigation';
 
-import { useAppDispatch, useAppSelector } from '../hooks/useRedux';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Login, notLogin } from '../redux/slices/userAuth';
+import SplashScreen from 'react-native-splash-screen';
+import { useCheckLogin } from '../hooks/useCheckLogin';
 
 const Stack = createNativeStackNavigator();
 
 function RootNavigate() {
-  const isAuth = useAppSelector(state => state.userAuth.isLogin);
-  const dispatch = useAppDispatch();
+  const [checkLogin, isAuth] = useCheckLogin();
 
   useEffect(() => {
-    const checkLogin = async () => {
-      try {
-        const token = await AsyncStorage.getItem('token');
-        if (token !== null) {
-          dispatch(Login());
-        } else dispatch(notLogin());
-      } catch (e) {
-        console.error("User didn't login", e);
-      }
+    const checkStack = async () => {
+      await checkLogin();
+      SplashScreen.hide();
     };
-
-    checkLogin();
-  }, []);
+    checkStack();
+  }, [checkLogin]);
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>

@@ -9,7 +9,7 @@ import ItemDocument from './item';
 import Loader from './Loader';
 import styles from './style';
 
-const renderItem = ({ item }) => {
+const renderItem = ({ item }: any) => {
   return (
     <>
       <ItemDocument data={item} />
@@ -20,11 +20,12 @@ const renderItem = ({ item }) => {
 
 const Outgoing = () => {
   const dispatch = useAppDispatch();
-  const data = useAppSelector(state => state.getDocs.company);
+  const data = useAppSelector(state => state.getDocs.outgoingDocs);
+  const companyId = useAppSelector(state => state.getDocs.comanyId);
 
   useEffect(() => {
-    dispatch(getOutgoingDocs(154));
-  }, []);
+    dispatch(getOutgoingDocs(companyId));
+  }, [companyId, dispatch]);
 
   return (
     <FlatList
@@ -35,7 +36,7 @@ const Outgoing = () => {
       keyExtractor={item => item.documentId}
       refreshing={false}
       ListEmptyComponent={<Loader />}
-      onRefresh={() => dispatch(getOutgoingDocs(154))}
+      onRefresh={() => dispatch(getOutgoingDocs(companyId))}
     />
   );
 };

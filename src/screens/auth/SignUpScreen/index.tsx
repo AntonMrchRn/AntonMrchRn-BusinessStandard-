@@ -14,9 +14,10 @@ import CustomInput from '../../../components/authComponents/CustomInput';
 import CustomButton from '../../../components/authComponents/CustomButton';
 
 const SignUpScreen = () => {
+  const dispatch = useAppDispatch();
+
   const [email, onChangeLogin] = useState('anna.d.rysina@gmail.com');
   const [password, onChangePassword] = useState('654321');
-  const dispatch = useAppDispatch();
 
   const error = useAppSelector(state => state.userAuth.status);
   const onSubmit = () => dispatch(fetchUserAuth({ email, password }));

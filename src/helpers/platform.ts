@@ -25,6 +25,9 @@ export default {
   brandColor: '#59ad40',
   tabBarActiveColor: '#59ad40',
   tabBarInactiveColor: '#282828',
+  gray: '#383838',
+  lightGray: '#757575',
+  darkGray: '#292929',
   //errors
   deviceWidth,
   deviceHeight,

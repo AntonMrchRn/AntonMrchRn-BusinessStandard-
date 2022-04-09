@@ -1,16 +1,13 @@
-import { Alert, Platform } from 'react-native';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { WritableDraft } from 'immer/dist/types/types-external';
-import RNFetchBlob from 'rn-fetch-blob';
 import { axiosInstance } from '../../api/axios/axiosInstance';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface iParams {
   id_company: number;
 }
 
 export const getOutgoingDocs = createAsyncThunk(
-  'docs/get',
+  'docs/getOutgoingDocs',
   async ({ id_company }: iParams, thunkApi) => {
     try {
       const { data } = await axiosInstance.get(
@@ -26,69 +23,66 @@ export const getOutgoingDocs = createAsyncThunk(
   }
 );
 
-export async function downloadFiles(
-  url: string,
-  contentType: string,
-  name: string
-) {
-  const token = await AsyncStorage.getItem('token');
-  const {
-    dirs: { DownloadDir, DocumentDir },
-  } = RNFetchBlob.fs;
-  const aPath = Platform.select({ ios: DocumentDir, android: DownloadDir });
+export const getAllCompanies = createAsyncThunk(
+  'docs/getAllCompanies',
+  async (_, thunkApi) => {
+    try {
+      const { data } = await axiosInstance.get(
+        'mapi/documents/availablecompanies'
+      );
 
-  RNFetchBlob.config({
-    fileCache: true,
-    path: aPath + `/${name}`,
-    addAndroidDownloads: {
-      useDownloadManager: true,
-      notification: true,
-      description: 'File downloaded by download manager.',
-      title: `Файл ${name} сохранен`,
-      path: `${aPath}/${name}`,
-      mime: contentType,
-    },
-  })
-    .fetch(
-      'GET',
-      `http://bs.yamoguopt.info/mapi/document?url=${url}&mimeType=${contentType}&nameForFile=${name}`,
-      {
-        Authorization: `Bearer ${token}`,
-        contentType: 'application/json',
-      }
-    )
-    .then(res => {
-      RNFetchBlob.android.actionViewIntent(res.path(), '');
-      Alert.alert('Файл успешно сохранен');
-    })
-    .catch(err => {
-      console.error('Ошибка загрузки ', err);
-    });
-}
+      return data;
+    } catch (error: any) {
+      return thunkApi.rejectWithValue({
+        error: error.message,
+      });
+    }
+  }
+);
 
 export interface CounterState {
-  company: WritableDraft<CounterState> | any;
+  companies: WritableDraft<CounterState> | any;
+  outgoingDocs: WritableDraft<CounterState> | any;
+  comanyId: WritableDraft<CounterState> | any;
 }
 
 const initialState: CounterState = {
-  company: null,
+  companies: null,
+  outgoingDocs: null,
+  comanyId: 'outgoingDocs[0].value',
 };
 
 const getDocs = createSlice({
   name: 'getDocs',
   initialState,
-  reducers: {},
+  reducers: {
+    changeCompanyId: (state, action) => {
+      state.comanyId = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(getOutgoingDocs.pending, (state, action) => {
-      state.company = action.payload;
+      state.outgoingDocs = action.payload;
     });
     builder.addCase(getOutgoingDocs.fulfilled, (state, action) => {
-      state.company = action.payload?.rows;
+      state.outgoingDocs = action.payload?.rows;
     });
     builder.addCase(getOutgoingDocs.rejected, (state, action) => {
-      state.company = action.payload;
+      state.outgoingDocs = action.payload;
+    });
+
+    builder.addCase(getAllCompanies.pending, (state, action) => {
+      state.companies = action.payload;
+    });
+    builder.addCase(getAllCompanies.fulfilled, (state, action) => {
+      state.companies = action.payload;
+    });
+    builder.addCase(getAllCompanies.rejected, (state, action) => {
+      state.companies = action.payload;
     });
   },
 });
+
+export const { changeCompanyId, comanyId } = getDocs.actions;
 
 export default getDocs.reducer;
