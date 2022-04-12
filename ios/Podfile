@@ -12,6 +12,7 @@ target 'BsAppRN' do
     :hermes_enabled => false
   )
 
+
   target 'BsAppRNTests' do
     inherit! :complete
     # Pods for testing

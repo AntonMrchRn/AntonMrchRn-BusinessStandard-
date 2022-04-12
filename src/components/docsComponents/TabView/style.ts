@@ -70,11 +70,11 @@ const styles = StyleSheet.create({
   },
   itemTitle: {
     fontSize: 15,
-    fontWeight: '500',
-    color: platform.darkGray,
+    fontWeight: '600',
+    color: platform.gray,
   },
   itemDate: {
-    fontSize: 13,
+    fontSize: 12,
   },
   itemKind: {
     fontSize: 13,

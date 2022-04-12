@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, StyleSheet, SafeAreaView } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
@@ -9,15 +9,21 @@ import RootNavigate from '../navigation';
 
 const App = () => {
   return (
-    <>
+    <SafeAreaView style={styles.container}>
       <StatusBar />
       <Provider store={store}>
         <NavigationContainer>
           <RootNavigate />
         </NavigationContainer>
       </Provider>
-    </>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 export default App;

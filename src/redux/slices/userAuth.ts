@@ -18,6 +18,7 @@ export const fetchUserAuth = createAsyncThunk(
         password,
       });
       await AsyncStorage.setItem('token', headers.xauthtoken);
+      await AsyncStorage.setItem('refreshToken', headers.xauthrefreshtoken);
       return data;
     } catch (error: any) {
       return thunkApi.rejectWithValue({

@@ -1,18 +1,21 @@
 import React from 'react';
 
 import { Text, TouchableOpacity, View } from 'react-native';
+
 import Icon from 'react-native-vector-icons/Octicons';
 import platform from '../../../helpers/platform';
-import { downloadFiles } from '../../../redux/slices/docs';
+import { downloadFiles } from '../../../utils/downloadFiles';
 
 import styles from './style';
 
 interface iItem {
-  name: string;
-  documentKind: string;
-  createdDate: number;
-  url: string;
-  contentType: string;
+  data: {
+    name: string;
+    documentKind: string;
+    createdDate: number;
+    url: string;
+    contentType: string;
+  };
 }
 
 const ItemDocument = ({
