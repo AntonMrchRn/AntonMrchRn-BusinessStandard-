@@ -8,10 +8,10 @@ interface iParams {
 
 export const getOutgoingDocs = createAsyncThunk(
   'docs/getOutgoingDocs',
-  async ({ id_company }: iParams, thunkApi) => {
+  async (id_company: iParams, thunkApi) => {
     try {
       const { data } = await axiosInstance.get(
-        `/mapi/document/Fromclient?offset=0&limit=100?companyId=${id_company}`
+        `/mapi/document/Fromclient?offset=0&limit=100&companyId=${id_company}`
       );
 
       return data;

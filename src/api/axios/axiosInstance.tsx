@@ -25,7 +25,6 @@ axiosInstance.interceptors.response.use(
     const originalRequest = error.config;
     if (error.response.status === 401) {
       const refreshToken = await AsyncStorage.getItem('refreshToken');
-
       try {
         const { data } = await axiosInstance.post('/account/refresh', {
           token: refreshToken,

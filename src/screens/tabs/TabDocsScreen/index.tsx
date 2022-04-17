@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
+
 import { View } from 'react-native';
 
 import Dropdown from '../../../components/docsComponents/Dropdown';
-import TabViewExample from '../../../components/docsComponents/TabView';
+import TabViewDocs from '../../../components/docsComponents/TabView';
 import Spacer from '../../../components/Spacer';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useRedux';
 import { getAllCompanies } from '../../../redux/slices/docs';
@@ -15,7 +16,7 @@ const DocsScreen = () => {
 
   useEffect(() => {
     dispatch(getAllCompanies());
-  }, []);
+  }, [dispatch]);
 
   return (
     <View style={styles.container}>
@@ -24,7 +25,7 @@ const DocsScreen = () => {
         <Dropdown companies={companies} />
       </View>
       <Spacer size="M" />
-      <TabViewExample />
+      <TabViewDocs />
     </View>
   );
 };
