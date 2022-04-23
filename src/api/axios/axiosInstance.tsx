@@ -29,6 +29,7 @@ axiosInstance.interceptors.response.use(
         const { data } = await axiosInstance.post('/account/refresh', {
           token: refreshToken,
         });
+        console.log('data', data);
 
         if (data) {
           await AsyncStorage.setItem('token', data.token);
@@ -37,6 +38,7 @@ axiosInstance.interceptors.response.use(
         }
       } catch (err) {
         console.log('ERROR_INTERCEPTORS', err);
+        await AsyncStorage.removeItem('token');
       }
     }
   }

@@ -1,20 +1,64 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import DocumentPicker from 'react-native-document-picker';
+import { axiosInstance } from '../api/axios/axiosInstance';
+import { useAppSelector } from './useRedux';
 
 export const useUploadFiles = () => {
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState<any>(null);
+  const companiesId = useAppSelector(state => state.getDocs.selectedId);
+  const selectedCompany = useAppSelector(
+    state => state.getDocs.selectedCompany
+  );
+
+  const requesID = async () => {
+    await axiosInstance.get('mapi/document/fromclient/dockind');
+  };
+  useEffect(() => {
+    requesID();
+    if (files != null) {
+      const upload = async () => {
+        await uploadImage();
+      };
+      upload();
+    }
+  }, [files]);
+
+  const uploadImage = async () => {
+    const token = await AsyncStorage.getItem('token');
+    const data = new FormData();
+
+    data.append('Files', files);
+    data.append('CompanyId', selectedCompany);
+    data.append('DocumentKindId', companiesId);
+
+    let response = await fetch('http://bs.yamoguopt.info/mapi/document', {
+      method: 'post',
+      body: data,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.status === 201) {
+      Alert.alert('Файл успешно загружен');
+    } else {
+      Alert.alert('Ошибка при загрузке. Проверьте выбранные поля.');
+    }
+  };
 
   const selectFiles = async () => {
     try {
-      const res = await DocumentPicker.pickMultiple({
+      const file = await DocumentPicker.pickMultiple({
         type: [DocumentPicker.types.allFiles],
       });
-      await res.map(item => files.push(item));
-      console.log('res', files);
-      setFiles([]);
+
+      file.map(item => setFiles(item));
     } catch (err) {
-      setFiles([]);
+      setFiles(null);
       if (DocumentPicker.isCancel(err)) {
         Alert.alert('Canceled');
       } else {
@@ -23,5 +67,6 @@ export const useUploadFiles = () => {
       }
     }
   };
-  return [selectFiles];
+
+  return [selectFiles, uploadImage];
 };

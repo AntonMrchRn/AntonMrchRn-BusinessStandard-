@@ -1,13 +1,12 @@
 import React, { SetStateAction, useEffect, useState } from 'react';
 
-import { TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import platform from '../../../helpers/platform';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/useRedux';
 import { useUploadFiles } from '../../../hooks/useUploadFiles';
 import { changeCompanyId } from '../../../redux/slices/docs';
+import CustomModal from '../Modal';
 
 import styles from './style';
 
@@ -34,7 +33,7 @@ function Dropdown({ companies }: iCompanies) {
       setItems(companies);
       dispatch(changeCompanyId(companies[0].value));
     }
-  }, [companies]);
+  }, [companies, dispatch]);
 
   return (
     <View style={styles.wrapper}>
@@ -54,13 +53,7 @@ function Dropdown({ companies }: iCompanies) {
         textStyle={styles.text}
         containerStyle={styles.container}
       />
-      <TouchableOpacity style={styles.upload} onPress={() => selectFiles()}>
-        <Icon
-          name="file-upload-outline"
-          size={40}
-          color={platform.brandColor}
-        />
-      </TouchableOpacity>
+      <CustomModal selectFiles={selectFiles} />
     </View>
   );
 }

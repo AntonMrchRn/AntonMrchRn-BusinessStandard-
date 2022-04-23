@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   upload: {
+    bottom: 1,
     marginLeft: 5,
     paddingHorizontal: 6,
     justifyContent: 'center',
