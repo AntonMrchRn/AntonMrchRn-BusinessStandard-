@@ -19,7 +19,7 @@ const renderTabBar = (props: any) => (
   />
 );
 
-export default class TabViewExample extends React.Component {
+export default class TabViewDocs extends React.Component {
   state = {
     index: 0,
     routes: [

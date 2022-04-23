@@ -14,6 +14,18 @@ const styles = StyleSheet.create({
   },
   container: {
     alignItems: 'center',
+    width: '83%',
+  },
+  wrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  upload: {
+    bottom: 1,
+    marginLeft: 5,
+    paddingHorizontal: 6,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   dropDownContainer: {
     paddingHorizontal: 5,

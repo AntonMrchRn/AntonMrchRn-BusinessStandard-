@@ -10,6 +10,7 @@ export const useCheckLogin = () => {
     try {
       const token = await AsyncStorage.getItem('token');
       if (token !== null) {
+        s;
         dispatch(Login());
       } else {
         dispatch(notLogin());
