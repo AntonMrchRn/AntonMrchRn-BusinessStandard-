@@ -36,13 +36,26 @@ export default {
   shadow:
     platform === 'ios'
       ? {
-          shadowColor: opacify('#0C2140', 0.1),
-          shadowOffset: { width: 0, height: 0 },
-          shadowRadius: 10,
-          shadowOpacity: 1,
+          shadowColor: '#575757',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.35,
+          shadowRadius: 3.5,
+
+          elevation: 3,
         }
       : {
-          elevation: 0,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 0,
+          },
+          shadowOpacity: 0.35,
+          shadowRadius: 3,
+
+          elevation: 6,
         },
 };
 

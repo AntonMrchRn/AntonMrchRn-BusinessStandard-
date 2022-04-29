@@ -12,8 +12,9 @@ import styles from './style';
 const renderItem = ({ item }: any) => {
   return (
     <>
+      <Spacer size="S" />
       <ItemDocument data={item} />
-      <Spacer size="L" />
+      <Spacer size="S" />
     </>
   );
 };

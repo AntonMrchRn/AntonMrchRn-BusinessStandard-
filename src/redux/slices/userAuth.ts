@@ -52,6 +52,7 @@ const usersAuth = createSlice({
     },
     notLogin: state => {
       state.login = '';
+      state.isLogin = false;
     },
   },
   extraReducers: builder => {

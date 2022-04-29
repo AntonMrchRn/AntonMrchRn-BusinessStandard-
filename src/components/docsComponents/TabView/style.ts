@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import platform, { opacify } from '../../../helpers/platform';
+import platform from '../../../helpers/platform';
 
 const styles = StyleSheet.create({
   wrapperLoader: {
@@ -9,8 +9,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   scene: {
-    paddingHorizontal: 7,
-    paddingTop: 20,
+    paddingVertical: 7,
+    flex: 1,
+    width: '100%',
+    backgroundColor: '#fff',
   },
   sceneContainer: {
     minHeight: '100%',
@@ -19,11 +21,13 @@ const styles = StyleSheet.create({
   },
   tabBarIndicator: {
     backgroundColor: platform.brandColor,
+    height: 2.5,
   },
   tabBar: {
     backgroundColor: '#dedede',
-    borderTopWidth: 0.5,
-    borderColor: platform.brandColor,
+    borderTopWidth: 2,
+    borderColor: '#d9d9d9',
+    ...platform.shadow,
   },
   tabBarLabel: {
     color: '#0f0f0f',
@@ -32,22 +36,20 @@ const styles = StyleSheet.create({
     minHeight: 95,
     maxHeight: 120,
     width: '100%',
-    borderWidth: 1.2,
-    borderLeftColor: platform.lightGray,
-    borderLeftWidth: 1,
+    borderWidth: 0,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 8,
-    paddingVertical: 10,
-    borderRadius: 15,
-    borderColor: platform.lightGray,
   },
   itemWprapper: {
+    marginVertical: 2,
     minHeight: 95,
     maxHeight: 120,
-    width: '100%',
+    width: '93%',
     flexDirection: 'row',
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    padding: 12,
     ...platform.shadow,
   },
   blockText: {
