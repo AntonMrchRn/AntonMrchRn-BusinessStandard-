@@ -8,6 +8,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  noData: {
+    fontSize: 18,
+  },
   scene: {
     paddingVertical: 7,
     flex: 1,

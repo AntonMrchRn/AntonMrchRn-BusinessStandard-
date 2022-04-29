@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/useRedux';
 import { getIncomingDocs, getOutgoingDocs } from '../../../redux/slices/docs';
@@ -19,6 +19,16 @@ const renderItem = ({ item }: any) => {
   );
 };
 
+const renderNoData = () => {
+  return (
+    <>
+      <Spacer size="S" />
+      <Text style={styles.noData}>У вас нет входящих документов</Text>
+      <Spacer size="S" />
+    </>
+  );
+};
+
 const Incoming = () => {
   const dispatch = useAppDispatch();
   const data = useAppSelector(state => state.getDocs.incomingDocs);
@@ -32,11 +42,11 @@ const Incoming = () => {
     <FlatList
       style={styles.scene}
       contentContainerStyle={styles.sceneContainer}
-      renderItem={renderItem}
+      renderItem={data ? renderItem : renderNoData}
       data={data}
       keyExtractor={item => item.documentId}
       refreshing={false}
-      ListEmptyComponent={<Loader />}
+      ListEmptyComponent={!data ? <Loader /> : renderNoData}
       onRefresh={() => dispatch(getOutgoingDocs(companyId))}
     />
   );
