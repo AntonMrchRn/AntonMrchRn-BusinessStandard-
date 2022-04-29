@@ -19,7 +19,7 @@ function CustomModal() {
 
   return (
     <TouchableOpacity style={styles.upload} onPress={toggleModal}>
-      <Icon name="file-upload-outline" size={40} color={platform.brandColor} />
+      <Icon name="file-upload-outline" size={47} color={platform.brandColor} />
 
       <Modal isVisible={isModalVisible}>
         <TouchableOpacity onPress={toggleModal} style={styles.closedModal} />

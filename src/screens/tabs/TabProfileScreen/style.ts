@@ -3,11 +3,14 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
     backgroundColor: '#fff',
   },
-  containerDropdown: {
-    paddingHorizontal: 5,
-    zIndex: 2,
+  wrapper: {
+    flex: 0.5,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
   },
 });
 

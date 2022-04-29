@@ -4,7 +4,7 @@ import platform from '../../../helpers/platform';
 const styles = StyleSheet.create({
   input: {
     height: 40,
-    width: '70%',
+    width: '80%',
     borderBottomColor: platform.tabBarInactiveColor,
     borderBottomWidth: 1.2,
     paddingRight: 10,
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
   activeInput: {
     height: 40,
-    width: '70%',
+    width: '80%',
     borderBottomColor: platform.brandColor,
     borderBottomWidth: 1.8,
     paddingRight: 10,

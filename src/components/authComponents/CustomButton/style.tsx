@@ -4,11 +4,12 @@ import platform from '../../../helpers/platform';
 const styles = StyleSheet.create({
   input: {
     backgroundColor: platform.brandColor,
-    width: '50%',
+    width: '60%',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 40,
-    borderRadius: 7,
+    height: 45,
+    borderRadius: 12,
+    ...platform.shadow,
   },
   label: {
     color: '#fff',

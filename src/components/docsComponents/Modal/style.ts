@@ -3,7 +3,6 @@ import platform from '../../../helpers/platform';
 
 const styles = StyleSheet.create({
   upload: {
-    bottom: 1,
     marginLeft: 5,
     paddingHorizontal: 6,
     justifyContent: 'center',

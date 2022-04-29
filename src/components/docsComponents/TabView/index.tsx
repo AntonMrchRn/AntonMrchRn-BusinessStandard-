@@ -12,8 +12,8 @@ const LazyPlaceholder = () => <View style={styles.scene} />;
 const renderTabBar = (props: any) => (
   <TabBar
     {...props}
-    indicatorStyle={styles.tabBarIndicator}
     style={styles.tabBar}
+    indicatorStyle={styles.tabBarIndicator}
     labelStyle={styles.tabBarLabel}
     getLabelText={({ route }) => route.title}
   />
