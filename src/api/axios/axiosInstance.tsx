@@ -39,6 +39,7 @@ axiosInstance.interceptors.response.use(
       } catch (err) {
         console.log('ERROR_INTERCEPTORS', err);
         await AsyncStorage.removeItem('token');
+        return axiosInstance.request(originalRequest);
       }
     }
   }
