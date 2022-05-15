@@ -12,14 +12,14 @@ const LazyPlaceholder = () => <View style={styles.scene} />;
 const renderTabBar = (props: any) => (
   <TabBar
     {...props}
-    indicatorStyle={styles.tabBarIndicator}
     style={styles.tabBar}
+    indicatorStyle={styles.tabBarIndicator}
     labelStyle={styles.tabBarLabel}
     getLabelText={({ route }) => route.title}
   />
 );
 
-export default class TabViewExample extends React.Component {
+export default class TabViewDocs extends React.Component {
   state = {
     index: 0,
     routes: [

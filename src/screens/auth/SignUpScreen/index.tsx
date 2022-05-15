@@ -25,7 +25,7 @@ const SignUpScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.wrapperLogo}>
-        <SvgXml xml={xml} width="144" height="144" />
+        <SvgXml xml={xml} width="155" height="155" />
       </View>
       <View style={styles.wrapperAuth}>
         <View>

@@ -30,7 +30,7 @@ export const fetchUserAuth = createAsyncThunk(
 
 export interface CounterState {
   isLogin: boolean;
-  status: WritableDraft<Object> | undefined;
+  status: WritableDraft<Object> | any;
   loading: boolean;
   login: string | null;
 }
@@ -52,6 +52,7 @@ const usersAuth = createSlice({
     },
     notLogin: state => {
       state.login = '';
+      state.isLogin = false;
     },
   },
   extraReducers: builder => {

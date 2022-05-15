@@ -17,7 +17,7 @@ export async function downloadFiles(
     fileCache: true,
     path: aPath + `/${name}`,
     addAndroidDownloads: {
-      useDownloadManager: true,
+      useDownloadManager: false,
       notification: true,
       description: 'File downloaded by download manager.',
       title: `Файл ${name} сохранен`,
@@ -34,10 +34,18 @@ export async function downloadFiles(
       }
     )
     .then(res => {
-      RNFetchBlob.android.actionViewIntent(res.path(), '');
-      Alert.alert('Файл успешно сохранен');
+      console.log('res', res);
+
+      if (Platform.OS === 'android') {
+        RNFetchBlob.android.actionViewIntent(res.path(), '');
+        Alert.alert(`Файл ${name} успешно сохранен`);
+      }
+      if (Platform.OS === 'ios') {
+        RNFetchBlob.ios.previewDocument(res.data);
+      }
     })
     .catch(err => {
+      Alert.alert('Ошибка загрузки');
       console.error('Ошибка загрузки ', err);
     });
 }
