@@ -30,7 +30,7 @@ export const fetchUserAuth = createAsyncThunk(
 
 export interface CounterState {
   isLogin: boolean;
-  status: WritableDraft<Object> | undefined;
+  status: WritableDraft<Object> | any;
   loading: boolean;
   login: string | null;
 }
