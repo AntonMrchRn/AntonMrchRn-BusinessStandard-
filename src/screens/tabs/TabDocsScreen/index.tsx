@@ -6,7 +6,7 @@ import Dropdown from '../../../components/docsComponents/Dropdown';
 import TabViewDocs from '../../../components/docsComponents/TabView';
 import Spacer from '../../../components/Spacer';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useRedux';
-import { getAllCompanies } from '../../../redux/slices/docs';
+import { getAllCompanies } from '../../../redux/slices/docs/actions';
 
 import styles from './style';
 

@@ -24,7 +24,7 @@ export default {
   // Color
   brandColor: '#59ad40',
   tabBarActiveColor: '#59ad40',
-  tabBarInactiveColor: '#282828',
+  tabBarInactiveColor: '#2e2e2e',
   gray: '#383838',
   lightGray: '#757575',
   darkGray: '#292929',
@@ -39,11 +39,10 @@ export default {
           shadowColor: '#575757',
           shadowOffset: {
             width: 0,
-            height: 2,
+            height: 1,
           },
-          shadowOpacity: 0.35,
-          shadowRadius: 3.5,
-
+          shadowOpacity: 0.3,
+          shadowRadius: 2.5,
           elevation: 3,
         }
       : {
@@ -56,6 +55,51 @@ export default {
           shadowRadius: 3,
 
           elevation: 6,
+        },
+
+  shadowChat:
+    platform === 'ios'
+      ? {
+          shadowColor: '#575757',
+          shadowOffset: {
+            width: 0,
+            height: 1,
+          },
+          shadowOpacity: 0.3,
+          shadowRadius: 2.5,
+          elevation: 3,
+        }
+      : {
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 1,
+          },
+          shadowOpacity: 0.8,
+          shadowRadius: 2.5,
+          elevation: 3,
+        },
+  shadowLight:
+    platform === 'ios'
+      ? {
+          shadowColor: '#575757',
+          shadowOffset: {
+            width: 0,
+            height: 0,
+          },
+          shadowOpacity: 0.3,
+          shadowRadius: 2.5,
+          elevation: 3,
+        }
+      : {
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 0,
+          },
+          shadowOpacity: 0.8,
+          shadowRadius: 2.5,
+          elevation: 3,
         },
 };
 

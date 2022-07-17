@@ -6,7 +6,8 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "apk": "cd android && ./gradlew assembleRelease",
+    "build-apk": "cd android && ./gradlew assembleRelease",
+    "build-aab": "cd android && ./gradlew bundleRelease",
     "clean": "cd android && ./gradlew clean",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
@@ -18,6 +19,7 @@
     "@react-navigation/native-stack": "^6.5.0",
     "@reduxjs/toolkit": "^1.8.0",
     "axios": "^0.26.1",
+    "dayjs": "^1.11.3",
     "install": "^0.13.0",
     "react": "17.0.2",
     "react-native": "0.67.4",

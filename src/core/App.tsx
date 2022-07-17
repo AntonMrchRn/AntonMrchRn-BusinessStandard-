@@ -1,18 +1,25 @@
 import React from 'react';
 import { StatusBar, StyleSheet, SafeAreaView } from 'react-native';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 
 import { store } from '../redux/store';
 import RootNavigate from '../navigation';
 
 const App = () => {
+  const MyTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: 'transparent',
+    },
+  };
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
       <Provider store={store}>
-        <NavigationContainer>
+        <NavigationContainer theme={MyTheme}>
           <RootNavigate />
         </NavigationContainer>
       </Provider>

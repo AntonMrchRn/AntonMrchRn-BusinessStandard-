@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { FlatList, Text } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useRedux';
-import { getOutgoingDocs } from '../../../redux/slices/docs';
+import { getOutgoingDocs } from '../../../redux/slices/docs/actions';
 
 import Spacer from '../../Spacer';
 import ItemDocument from './item';

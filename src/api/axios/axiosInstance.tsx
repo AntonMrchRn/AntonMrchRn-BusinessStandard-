@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-
 import { host } from '../config';
 
 export const axiosInstance = axios.create({
@@ -26,10 +25,9 @@ axiosInstance.interceptors.response.use(
     if (error.response.status === 401) {
       const refreshToken = await AsyncStorage.getItem('refreshToken');
       try {
-        const { data } = await axiosInstance.post('/account/refresh', {
+        const { data } = await axiosInstance.post('/Account/Refresh', {
           token: refreshToken,
         });
-        console.log('data', data);
 
         if (data) {
           await AsyncStorage.setItem('token', data.token);
@@ -39,7 +37,6 @@ axiosInstance.interceptors.response.use(
       } catch (err) {
         console.log('ERROR_INTERCEPTORS', err);
         await AsyncStorage.removeItem('token');
-        return axiosInstance.request(originalRequest);
       }
     }
   }
