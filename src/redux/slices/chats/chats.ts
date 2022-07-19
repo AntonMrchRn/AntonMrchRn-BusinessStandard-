@@ -20,7 +20,11 @@ const initialState: CounterState = {
 const chatsAuth = createSlice({
   name: 'chats',
   initialState,
-  reducers: {},
+  reducers: {
+    resetMessagesChat(state) {
+      state.messagesChat = [];
+    },
+  },
   extraReducers: builder => {
     // get all chats
     builder.addCase(getChatList.pending, state => {
@@ -49,5 +53,7 @@ const chatsAuth = createSlice({
     });
   },
 });
+
+export const { resetMessagesChat } = chatsAuth.actions;
 
 export default chatsAuth.reducer;
