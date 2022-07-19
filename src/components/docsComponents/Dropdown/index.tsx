@@ -5,7 +5,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/useRedux';
 import { useUploadFiles } from '../../../hooks/useUploadFiles';
-import { changeCompanyId } from '../../../redux/slices/docs';
+import { changeCompanyId } from '../../../redux/slices/docs/docs';
 import CustomModal from '../Modal';
 
 import styles from './style';

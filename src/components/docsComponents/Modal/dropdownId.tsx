@@ -4,7 +4,10 @@ import { View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/useRedux';
-import { changeSelectedId, getDocumentsID } from '../../../redux/slices/docs';
+import {
+  changeSelectedId,
+  getDocumentsID,
+} from '../../../redux/slices/docs/docs';
 import Spacer from '../../Spacer';
 
 import styles from './style';
