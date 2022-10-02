@@ -5,7 +5,11 @@ import ChatMessage from '../../../../components/chatComponents/chatMessage';
 import { ListEmptyChat } from '../../../../components/chatComponents/chatsItem/ListEmptyChat';
 import platform from '../../../../helpers/platform';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/useRedux';
-import { getMessages } from '../../../../redux/slices/chats/actions';
+import {
+  getChatList,
+  getMessages,
+} from '../../../../redux/slices/chats/actions';
+import { resetMessagesChat } from '../../../../redux/slices/chats/chats';
 
 import styles from './styles';
 
@@ -17,9 +21,15 @@ const CurrentChat = ({
   const dispatch = useAppDispatch();
   const { messages } = useAppSelector(state => state.chats.messagesChat);
   const [keyboardOffset, setKeyboardOffset] = useState(0);
+  const companyId = useAppSelector(state => state.getDocs.comanyId);
 
   useEffect(() => {
     dispatch(getMessages(dialogId));
+
+    return () => {
+      dispatch(getChatList(companyId));
+      dispatch(resetMessagesChat());
+    };
   }, [dialogId, dispatch]);
 
   const onKeyboardShow = (event: any) =>
