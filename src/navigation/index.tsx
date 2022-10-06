@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import AuthNavigation from './Auth';
 import TabNavigation from './App/TabNavigation';
@@ -8,7 +8,7 @@ import TabNavigation from './App/TabNavigation';
 import SplashScreen from 'react-native-splash-screen';
 import { useCheckLogin } from '../hooks/useCheckLogin';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 function RootNavigate() {
   const [checkLogin, isAuth] = useCheckLogin();

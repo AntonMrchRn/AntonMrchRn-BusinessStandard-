@@ -13,11 +13,12 @@ interface iItem {
     dialogId: number;
     lastMessageDate: string;
     lastMessage: string;
+    currentUserId: string;
   };
 }
 
 const ChatItem = ({
-  data: { roleName, dialogId, lastMessageDate, lastMessage },
+  data: { roleName, dialogId, lastMessageDate, lastMessage, currentUserId },
 }: iItem) => {
   const navigation = useNavigation();
   const time = dayjs(lastMessageDate).locale('ru').format('HH:mm');
@@ -27,7 +28,13 @@ const ChatItem = ({
     <TouchableOpacity
       style={styles.item}
       activeOpacity={0.5}
-      onPress={() => navigation.navigate('CurrentChat', { dialogId, roleName })}
+      onPress={() =>
+        navigation.navigate('CurrentChat', {
+          dialogId,
+          roleName,
+          currentUserId,
+        })
+      }
     >
       <View style={styles.wrapperContent}>
         <Avatar />

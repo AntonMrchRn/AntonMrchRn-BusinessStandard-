@@ -15,7 +15,7 @@ import styles from './styles';
 
 const CurrentChat = ({
   route: {
-    params: { dialogId },
+    params: { dialogId, currentUserId },
   },
 }) => {
   const dispatch = useAppDispatch();
@@ -77,7 +77,7 @@ const CurrentChat = ({
             : keyboardOffset - 30,
         }}
       >
-        <ChatInput />
+        <ChatInput dialogId={dialogId} currentUserId={currentUserId} />
       </View>
     </View>
   );

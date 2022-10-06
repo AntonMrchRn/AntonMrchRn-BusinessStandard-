@@ -1,12 +1,12 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import ChatsScreen from '../../../screens/tabs/TabChatsScreen';
 import CurrentChat from '../../../screens/tabs/TabChatsScreen/NestedScreens/currentChat';
 import BackNavigation from '../../../components/BackNavigation';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 function ChatsNavigator({ navigation, route }) {
   React.useLayoutEffect(() => {

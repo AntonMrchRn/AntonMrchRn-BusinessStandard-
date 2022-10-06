@@ -15,6 +15,7 @@ const App = () => {
       background: 'transparent',
     },
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />

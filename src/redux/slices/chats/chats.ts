@@ -5,14 +5,12 @@ export interface CounterState {
   list: any;
   loading: boolean;
   error: any;
-  isTabBarVisible: boolean;
   messagesChat: any;
 }
 
 const initialState: CounterState = {
   list: [],
   messagesChat: [],
-  isTabBarVisible: false,
   loading: false,
   error: {},
 };
