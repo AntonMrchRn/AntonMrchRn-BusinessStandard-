@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
     marginBottom: platform.ios ? 10 : 0,
   },
   list: {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#fff',
+    paddingVertical: 5,
   },
   wrapperList: {
     flex: 1,

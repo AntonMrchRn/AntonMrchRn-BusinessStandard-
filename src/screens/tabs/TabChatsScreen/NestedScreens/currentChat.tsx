@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { FlatList, Keyboard, View } from 'react-native';
+import { Keyboard, View } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
+
 import ChatInput from '../../../../components/chatComponents/chatInput';
 import ChatMessage from '../../../../components/chatComponents/chatMessage';
 import { ListEmptyChat } from '../../../../components/chatComponents/chatsItem/ListEmptyChat';
@@ -23,6 +25,16 @@ const CurrentChat = ({
   const [keyboardOffset, setKeyboardOffset] = useState(0);
   const companyId = useAppSelector(state => state.getDocs.comanyId);
 
+  const onKeyboardShow = (event: any) =>
+    setKeyboardOffset(event.endCoordinates.height);
+  const onKeyboardHide = () => setKeyboardOffset(0);
+  const keyboardDidShowListener = useRef();
+  const keyboardDidHideListener = useRef();
+
+  const renderItem = ({ item }: any) => {
+    return <ChatMessage item={item} />;
+  };
+
   useEffect(() => {
     dispatch(getMessages(dialogId));
 
@@ -31,12 +43,6 @@ const CurrentChat = ({
       dispatch(resetMessagesChat());
     };
   }, [dialogId, dispatch]);
-
-  const onKeyboardShow = (event: any) =>
-    setKeyboardOffset(event.endCoordinates.height);
-  const onKeyboardHide = () => setKeyboardOffset(0);
-  const keyboardDidShowListener = useRef();
-  const keyboardDidHideListener = useRef();
 
   useEffect(() => {
     keyboardDidShowListener.current = Keyboard.addListener(
@@ -54,19 +60,16 @@ const CurrentChat = ({
     };
   }, [keyboardOffset]);
 
-  const renderItem = ({ item }: any) => {
-    return <ChatMessage item={item} />;
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.containerChat}>
-        <FlatList
-          style={styles.list}
-          contentContainerStyle={styles.wrapperList}
+        <FlashList
+          contentContainerStyle={styles.list}
           renderItem={renderItem}
           data={messages}
           ListEmptyComponent={ListEmptyChat}
+          estimatedItemSize={50}
+          disableAutoLayout={true}
           keyExtractor={item => item.messageId}
         />
       </View>

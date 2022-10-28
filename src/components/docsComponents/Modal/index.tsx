@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import Modal from 'react-native-modal';
 import styles from './style';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -20,7 +20,6 @@ function CustomModal() {
   return (
     <TouchableOpacity style={styles.upload} onPress={toggleModal}>
       <Icon name="file-upload-outline" size={47} color={platform.brandColor} />
-
       <Modal isVisible={isModalVisible}>
         <TouchableOpacity onPress={toggleModal} style={styles.closedModal} />
         <View style={styles.wrapperModal}>

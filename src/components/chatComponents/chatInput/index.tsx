@@ -9,7 +9,7 @@ import styles from './style';
 
 const ChatInput = ({ currentUserId, dialogId }: any) => {
   const [text, onChangeText] = useState('');
-  const { sendMessage } = useContext(ChatContext);
+  const { sendMessage }: any = useContext(ChatContext);
 
   const user = {
     DialogId: dialogId,
@@ -34,7 +34,12 @@ const ChatInput = ({ currentUserId, dialogId }: any) => {
         placeholder="Сообщение ..."
         placeholderTextColor={'gray'}
       />
-      <TouchableOpacity style={styles.btn} onPress={() => sendMessage(user)}>
+      <TouchableOpacity
+        style={styles.btn}
+        onPress={() =>
+          text.length >= 1 && sendMessage({ user, dialogId, onChangeText })
+        }
+      >
         <Ionicons name="send" size={25} color={platform.brandColor} />
       </TouchableOpacity>
     </View>

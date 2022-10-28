@@ -22,6 +22,9 @@ const chatsAuth = createSlice({
     resetMessagesChat(state) {
       state.messagesChat = [];
     },
+    addMessage(state, action) {
+      state.messagesChat.messages.push(action.payload);
+    },
   },
   extraReducers: builder => {
     // get all chats
@@ -52,6 +55,6 @@ const chatsAuth = createSlice({
   },
 });
 
-export const { resetMessagesChat } = chatsAuth.actions;
+export const { resetMessagesChat, addMessage } = chatsAuth.actions;
 
 export default chatsAuth.reducer;

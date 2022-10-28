@@ -18,7 +18,7 @@ export const getChatList = createAsyncThunk(
   }
 );
 
-export const getMessages = createAsyncThunk(
+export const getMessages: any = createAsyncThunk(
   'chats/getMessages',
   async (id, thunkApi) => {
     try {
