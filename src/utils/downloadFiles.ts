@@ -1,6 +1,7 @@
 import { Alert, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNFetchBlob from 'rn-fetch-blob';
+import { CheckFilePermissions } from './permissions';
 
 export async function downloadFiles(
   url: string,
@@ -33,12 +34,14 @@ export async function downloadFiles(
         contentType: 'application/json',
       }
     )
-    .then(res => {
+    .then(async res => {
       console.log('res', res);
 
       if (Platform.OS === 'android') {
-        RNFetchBlob.android.actionViewIntent(res.path(), '');
-        Alert.alert(`Файл ${name} успешно сохранен`);
+        if (await CheckFilePermissions('android')) {
+          RNFetchBlob.android.actionViewIntent(res.path(), '');
+          Alert.alert(`Файл ${name} успешно сохранен`);
+        }
       }
       if (Platform.OS === 'ios') {
         RNFetchBlob.ios.previewDocument(res.data);

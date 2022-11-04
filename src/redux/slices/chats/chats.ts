@@ -23,7 +23,7 @@ const chatsAuth = createSlice({
       state.messagesChat = [];
     },
     addMessage(state, action) {
-      state.messagesChat.messages.push(action.payload);
+      state.messagesChat.messages.unshift(action.payload);
     },
   },
   extraReducers: builder => {

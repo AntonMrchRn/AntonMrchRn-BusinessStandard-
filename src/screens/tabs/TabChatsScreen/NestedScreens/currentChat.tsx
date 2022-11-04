@@ -31,10 +31,6 @@ const CurrentChat = ({
   const keyboardDidShowListener = useRef();
   const keyboardDidHideListener = useRef();
 
-  const renderItem = ({ item }: any) => {
-    return <ChatMessage item={item} />;
-  };
-
   useEffect(() => {
     dispatch(getMessages(dialogId));
 
@@ -60,15 +56,20 @@ const CurrentChat = ({
     };
   }, [keyboardOffset]);
 
+  const renderItem = ({ item }: any) => {
+    return <ChatMessage item={item} />;
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.containerChat}>
         <FlashList
+          inverted
           contentContainerStyle={styles.list}
           renderItem={renderItem}
           data={messages}
           ListEmptyComponent={ListEmptyChat}
-          estimatedItemSize={50}
+          estimatedItemSize={20}
           disableAutoLayout={true}
           keyExtractor={item => item.messageId}
         />
