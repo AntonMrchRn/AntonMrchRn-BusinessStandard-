@@ -2,6 +2,7 @@ import { Alert, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNFetchBlob from 'rn-fetch-blob';
 import { CheckFilePermissions } from './permissions';
+import { host } from '../api/config';
 
 export async function downloadFiles(
   url: string,
@@ -28,7 +29,7 @@ export async function downloadFiles(
   })
     .fetch(
       'GET',
-      `http://bs.yamoguopt.info/mapi/document?url=${url}&mimeType=${contentType}&nameForFile=${name}`,
+      `${host}/mapi/document?url=${url}&mimeType=${contentType}&nameForFile=${name}`,
       {
         Authorization: `Bearer ${token}`,
         contentType: 'application/json',
@@ -47,8 +48,7 @@ export async function downloadFiles(
         RNFetchBlob.ios.previewDocument(res.data);
       }
     })
-    .catch(err => {
+    .catch(() => {
       Alert.alert('Ошибка загрузки');
-      console.error('Ошибка загрузки ', err);
     });
 }

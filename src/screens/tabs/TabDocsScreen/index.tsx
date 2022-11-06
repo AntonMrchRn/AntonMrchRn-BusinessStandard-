@@ -5,8 +5,10 @@ import { PermissionsAndroid, View } from 'react-native';
 import Dropdown from '../../../components/docsComponents/Dropdown';
 import TabViewDocs from '../../../components/docsComponents/TabView';
 import Spacer from '../../../components/Spacer';
+import platform from '../../../helpers/platform';
 import { useAppDispatch, useAppSelector } from '../../../hooks/useRedux';
 import { getAllCompanies } from '../../../redux/slices/docs/actions';
+import { checkPermissions } from '../../../utils/permissions';
 
 import styles from './style';
 
@@ -15,26 +17,9 @@ const DocsScreen = () => {
   const companies = useAppSelector(state => state.getDocs.companies);
 
   useEffect(() => {
-    const checkPermissions = async () => {
-      const readGranted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE
-      );
-      //OR
-      const writeGranted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
-      );
-      // For both, you can use as below and get as response the status in an array for each permission requested
-      const result = await PermissionsAndroid.requestMultiple([
-        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-      ]);
-      const isGranted =
-        result[PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE] ===
-          'granted' &&
-        result[PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE] ===
-          'granted';
-    };
-    checkPermissions();
+    if (platform.android) {
+      checkPermissions();
+    }
   }, []);
 
   useEffect(() => {

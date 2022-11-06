@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import DocumentPicker from 'react-native-document-picker';
 import { axiosInstance } from '../api/axios/axiosInstance';
 import { useAppSelector } from './useRedux';
+import { host } from '../api/config';
 
 export const useUploadFiles = () => {
   const [files, setFiles] = useState<any>(null);
@@ -16,6 +17,7 @@ export const useUploadFiles = () => {
   const requesID = async () => {
     await axiosInstance.get('mapi/document/fromclient/dockind');
   };
+
   useEffect(() => {
     requesID();
     if (files != null) {
@@ -34,7 +36,7 @@ export const useUploadFiles = () => {
     data.append('CompanyId', selectedCompany);
     data.append('DocumentKindId', companiesId);
 
-    let response = await fetch('http://bs.yamoguopt.info/mapi/document', {
+    let response = await fetch(`${host}/mapi/document`, {
       method: 'post',
       body: data,
       headers: {

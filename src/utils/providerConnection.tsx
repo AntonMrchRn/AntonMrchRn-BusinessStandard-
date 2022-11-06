@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useAppDispatch } from '../hooks/useRedux';
 import { getMessages } from '../redux/slices/chats/actions';
 import { addMessage } from '../redux/slices/chats/chats';
+import { host } from '../api/config';
 
 export const ChatContext = createContext({
   connection: null,
@@ -15,7 +16,7 @@ export const ConnectionChatContextProvider: any = ({ children }: any) => {
   const dispatch = useAppDispatch();
 
   const connection: any = new signalR.HubConnectionBuilder()
-    .withUrl('http://bs.yamoguopt.info/messaging', {
+    .withUrl(`${host}/messaging`, {
       transport: signalR.HttpTransportType.WebSockets,
       accessTokenFactory: async () => AsyncStorage.getItem('token') as any,
     })
