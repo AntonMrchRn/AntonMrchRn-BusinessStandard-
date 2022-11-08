@@ -31,6 +31,7 @@ export const useUploadFiles = () => {
   const uploadImage = async () => {
     const token = await AsyncStorage.getItem('token');
     const data = new FormData();
+    console.log('files', files);
 
     data.append('Files', files);
     data.append('CompanyId', selectedCompany);

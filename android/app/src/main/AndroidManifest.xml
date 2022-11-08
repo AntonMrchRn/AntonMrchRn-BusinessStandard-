@@ -25,6 +25,8 @@
         android:exported="true"
       >
         <intent-filter>
+            <!-- <data android:mimeType="*/*" />
+            <action android:name="android.intent.action.VIEW" /> -->
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
             <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>

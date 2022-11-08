@@ -1,8 +1,10 @@
 import { Alert, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNFetchBlob from 'rn-fetch-blob';
+
 import { CheckFilePermissions } from './permissions';
 import { host } from '../api/config';
+import platform from '../helpers/platform';
 
 export async function downloadFiles(
   url: string,
@@ -16,10 +18,10 @@ export async function downloadFiles(
   const aPath = Platform.select({ ios: DocumentDir, android: DownloadDir });
 
   RNFetchBlob.config({
-    fileCache: true,
+    fileCache: false,
     path: aPath + `/${name}`,
     addAndroidDownloads: {
-      useDownloadManager: false,
+      useDownloadManager: true,
       notification: true,
       description: 'File downloaded by download manager.',
       title: `Файл ${name} сохранен`,
@@ -36,19 +38,17 @@ export async function downloadFiles(
       }
     )
     .then(async res => {
-      console.log('res', res);
-
-      if (Platform.OS === 'android') {
+      if (platform.android) {
         if (await CheckFilePermissions('android')) {
+          console.log('res', res);
           RNFetchBlob.android.actionViewIntent(res.path(), '');
-          Alert.alert(`Файл ${name} успешно сохранен`);
         }
       }
       if (Platform.OS === 'ios') {
         RNFetchBlob.ios.previewDocument(res.data);
       }
     })
-    .catch(() => {
-      Alert.alert('Ошибка загрузки');
+    .catch(err => {
+      console.log('err', err);
     });
 }
